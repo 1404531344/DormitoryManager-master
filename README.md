@@ -1,4 +1,4 @@
-别人的。。。:    http://github.com/Joyrocky/DormitoryManeger
+别人的。。。:    http://github.com/Joyrocky/DormitoryManager
 - 毕业设计💼
 - MD5加密🔒
 - SSM框架🎨
