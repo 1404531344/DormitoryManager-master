@@ -36,13 +36,29 @@ public class AdminController {
 	public String login( Admin admin, Model model, HttpSession session, HttpServletRequest request) {
 		// 通过账号和密码查询用户
 
-		admin.setA_password(MD5Util.MD5EncodeUtf8(admin.getA_password()));
-		Admin ad = adminService.findAdmin(admin);
-		if(ad!=null){
-			session.setAttribute("ad", ad);
-			return "homepage";
-		}
-		model.addAttribute("msg", "用户名或密码错误，请重新登录！");
+
+
+
+try {
+	System.out.println("我是账户："+admin.getA_username().toString());
+	System.out.println("我是密码："+admin.getA_password());
+	if (admin.getA_username().equals("")||admin.getA_password().equals("")) {
+		model.addAttribute("msg", "用户名密码不能为空，请重新登录！");
+	}
+
+	admin.setA_password(MD5Util.MD5EncodeUtf8(admin.getA_password()));
+	Admin ad = adminService.findAdmin(admin);
+	if(ad!=null){
+		session.setAttribute("ad", ad);
+		return "homepage";
+	}
+	model.addAttribute("msg", "用户名或密码错误，请重新登录！");
+
+
+}catch (Exception e){
+	System.out.println(e);
+}
+
 		return "login";
 	}
 
